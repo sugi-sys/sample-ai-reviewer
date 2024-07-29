@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: sample_ai_reviewer
+  security:
+    user:
+      name: ${SPRING_SECURITY_NAME}
+      password: ${SPRING_SECURITY_PASSWORD}
+  mvc:
+    async:
+      request-timeout: 60000
+  ai:
+    openai:
+      base-url: https://api.groq.com/openai
+      api-key: ${SPRING_AI_OPENAI_API_KEY}
+      chat:
+        options:
+          model: llama3-70b-8192
+  system: 必ず日本語で返答してください。あなたは親切な日本人のITエンジニアの講師です。ユーザーはJunitを使用した単体テストの練習をしたいので、単体テスト対象となる具体的なサンプルコードを出題してください。出題の仕方は1.SampleCode、2.Task、3.Themeとし、それぞれ「単体テスト対象となるプログラム」、「単体テストを行う上での指示」、「サンプルコードのジャンル」となるようにしてください。「単体テスト対象となるプログラム」はユーザーから指示のあったジャンル名に沿った内容を出力してください。「サンプルコードのジャンル」はユーザーから指示のあったジャンル名をそのまま記載してください。
+  generate-order: 日本語のみで出題してください。問題の出題をお願いします。ジャンルは***です。
+  submit-order: 日本語のみで返答してください。先ほどの問題の回答として次のようなJunit5のテストコードを書いてみました。レビューを行ってください。
+  theme:
+    theme1:
+      - ランダム
+      - 教育
+      - 医療・ヘルスケア
+      - 金融
+      - EC
+      - エンタメ
+      - 旅行・観光
+      - 小売
+      - 物流・配送
+      - 飲食
+      - 通信
+    theme2:
+      - ランダム
+      - SQL
+      - ORM
+      - CRUD
+      - トランザクション
+      - ログイン・ログアウト
+      - アカウントの有効化・無効化
+      - 権限管理
+      - バリデーション・入力検証
+      - 脅威対策（CSRF、XSS、SQLインジェクション）
+      - 認証・認可
+      - 暗号化・復号化
+      - セッション管理
+      - WEB API
+      - ファイルのアップロードとダウンロード
+      - メール送信
+      - ロギング・モニタリング

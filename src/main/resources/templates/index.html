@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html id="body-color" lang="ja" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <title>JUnit5テスト</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 85vh;
+        }
+    </style>
+    <link href="../static/css/bootstrap.css" th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body>
+    <nav id="nav-color" class="navbar navbar-dark bg-body-tertiary">
+        <a class="navbar-brand ps-3" href="#">JUnit5テスト</a>
+        <div>
+            <a class="btn btn-outline-success me-2" href="/logout">ログアウト</a>
+            <button type="button" id="color" class="btn btn-outline-secondary me-2">color</button>
+        </div>
+    </nav>
+    <div class="container mt-3">
+
+        <div class="col-md-12">
+            <h1 class="mb-4">JUnit5テスト</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">問題</h5>
+
+                    <div id="generateMenu" class="text-center" style="display: none;">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ps-3">題材</div>
+                            <select class="form-select w-75" id="theme-1">
+                                <option th:each="theme, stat : ${theme1}" th:value="${stat.index}" th:text="${theme}">
+                                    test</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ps-3">ジャンル</div>
+                            <select class="form-select w-75" id="theme-2">
+                                <option th:each="theme, stat : ${theme2}" th:value="${stat.index}" th:text="${theme}">
+                                    test</option>
+                            </select>
+                        </div>
+
+                        <input type="button" id="generate" src="#" th:src="@{/api/generate}" class="btn btn-primary m-4"
+                            value="クイズを生成する">
+                    </div>
+                    <div id="loading" class="text-center p-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="output" class="p-2"></div>
+                    <div class="form-group">
+                        回答：
+                        <div id="container"></div>
+                        <div class="text-end">
+                            <input type="button" id="submit" class="btn btn-success m-2" value="回答する">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="review" class="card">
+                <div class="card-body">
+                    <h5 class="card-title">レビュー</h5>
+                    <div id="reviewLoading" class="text-center p-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="reviewOutput" class="p-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/bootstrap.js" th:src="@{js/bootstrap.js}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.28.1/min/vs/loader.min.js"></script>
+    <script type="module" src="../static/js/main.js" th:src="@{js/main.js}"></script>
+</body>
+
+</html>
